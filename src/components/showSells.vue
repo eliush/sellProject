@@ -1,7 +1,7 @@
 <template>
     <div id="preview">
         <ul>
-            <li v-for="sell in sells" :key="sell.id">{{sell.date}}-{{sell.money}}</li>
+            <li v-for="sell in seles" :key="sell.id">{{sell.date}}-{{sell.money}}</li>
         </ul>
     </div>
 </template>
@@ -10,7 +10,9 @@
 export default {
     props: ['sells'],
     data(){
-        return{}
+        return{
+        seles : localStorage.getItem("items")
+        }
     }
 }
 </script>
