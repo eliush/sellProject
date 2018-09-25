@@ -11,7 +11,7 @@ export default {
     props: ['sells'],
     data(){
         return{
-        seles : localStorage.getItem("items")
+        seles : JSON.parse(localStorage.getItem("items"))
         }
     }
 }
