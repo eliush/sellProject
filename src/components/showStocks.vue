@@ -1,9 +1,9 @@
 <template>
     <div id="preview">
-        <h2>Sold Amount: {{totalAmount}} Taka</h2>
-        <div id="show" v-for="(sell,index) in sales" :key="sell.id">
-            <span>Date: {{sell.date}}</span>
-            <span>{{sell.money}} Taka</span>
+        <h2>Stocked Quantity {{total}} pcs</h2>
+        <div id="show" v-for="(stock,index) in stocked" :key="stock.id">
+            <span>Date: {{stock.date}}</span>
+            <span>{{stock.quantity}} pcs</span>
             <div class="remove" v-on:click="remove(index)">
                 &times;
             </div>
@@ -11,24 +11,23 @@
     </div>
 </template>
 <script>
-
 export default {
     data(){
-        return{
-            totalAmount: 0,
-            sales : JSON.parse(localStorage.getItem("items"))
+        return {
+            stocked : JSON.parse(localStorage.getItem('stock')),
+            total: 0
         }
     },
     methods:{
         remove:function(index){
             alert("removed");
-            this.sales.splice(index,1);
-            localStorage.setItem("items",JSON.stringify(this.sales));
+            this.stocked.splice(index,1);
+            localStorage.setItem("stock",JSON.stringify(this.stocked));
         },
     },
     created(){
-        for(var i=0;i<this.sales.length;i++){
-                this.totalAmount = parseInt(this.totalAmount)+ parseInt(this.sales[i].money);
+        for(var i=0;i<this.stocked.length;i++){
+                this.total = parseInt(this.total)+ parseInt(this.stocked[i].quantity);
             }
     }
 }
@@ -49,4 +48,6 @@ h2{
   margin: 10px 0;
 }
 </style>
+
+
 

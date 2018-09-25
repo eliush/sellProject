@@ -1,16 +1,11 @@
 <template>
 <div id="sell">
     <h4>Total Sell</h4>
-    <form v-if="!show">
-        <input type="text" id="date" v-model="dates" placeholder="Date"> 
+    <form>
+        <input type="date" id="date" v-model="dates" placeholder="Date"> 
         <input type="text" id="buy" v-model="moneys" placeholder="Sell">
         <button v-on:click.prevent="addSell">Add</button>
     </form>
-    <div id="preview">
-        <ul>
-            <li v-for="sell in sells" :key="sell.id">{{sell.date}}-{{sell.money}}</li>
-        </ul>
-    </div>
 </div>
 </template>
 <script>
@@ -20,7 +15,6 @@ export default {
         dates: '',
         moneys: '',
         sells: JSON.parse(localStorage.getItem("items")) || [],
-        show: false
       }
     },
     methods: {
@@ -33,7 +27,7 @@ export default {
               date:  this.dates,
               money: this.moneys
           });
-          this.show = !this.show
+          alert("Added");
           localStorage.setItem("items",JSON.stringify(this.sells));
           }
           

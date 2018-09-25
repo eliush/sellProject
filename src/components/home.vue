@@ -1,6 +1,6 @@
 <template>
 <div id="home">
-  <h2>Nazma Sharee fashion</h2> 
+  <h1>Nazma Sharee fashion</h1> 
 </div>
 </template>
 <script>

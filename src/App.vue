@@ -10,7 +10,8 @@ import home from './components/home.vue'
 import header from './components/header.vue'
 import stock from './components/stock.vue'
 import sell from './components/sell.vue'
-//import showSells from './componets/showSells.vue'
+import showSells from './components/showSells.vue'
+import showStocks from './components/showStocks.vue'
 
 export default {
   name: 'app',
@@ -19,7 +20,8 @@ export default {
     "app-header": header,
     "stock": stock,
     "sell": sell,
-    //"showSells": showSells
+    "showSells": showSells,
+    "showStocks": showStocks
   },
   data () {
     return {
@@ -29,4 +31,5 @@ export default {
 </script>
 
 <style>
+
 </style>
