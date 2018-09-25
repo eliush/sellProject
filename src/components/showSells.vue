@@ -1,9 +1,9 @@
 <template>
     <div id="preview">
-        <h2>Sold Amount: {{totalAmount}}</h2>
+        <h2>Sold Amount: {{totalAmount}} Taka</h2>
         <div id="show" v-for="(sell,index) in sales" :key="sell.id">
             <span>{{sell.date}}</span>
-            <span>{{sell.money}}</span>
+            <span>{{sell.money}} Taka</span>
             <div class="remove" v-on:click="remove(index)">
                 &times;
             </div>
@@ -24,14 +24,12 @@ export default {
             alert("removed");
             this.sales.splice(index,1);
             localStorage.setItem("items",JSON.stringify(this.sales));
+        },
     },
-    },
-    computed:{
-        total(){
-            for(var i=0;i<this.sales.length;i++){
-                this.totalAmount = this.totalAmount+ this.sales[i].money;
+    created(){
+        for(var i=0;i<this.sales.length;i++){
+                this.totalAmount = parseInt(this.totalAmount)+ parseInt(this.sales[i].money);
             }
-        }
     }
 }
 </script>
