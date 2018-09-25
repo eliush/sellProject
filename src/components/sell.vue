@@ -6,11 +6,6 @@
         <input type="text" id="buy" v-model="moneys" placeholder="Sell">
         <button v-on:click.prevent="addSell">Add</button>
     </form>
-    <div id="preview">
-        <ul>
-            <li v-for="sell in sells" :key="sell.id">{{sell.date}}-{{sell.money}}</li>
-        </ul>
-    </div>
 </div>
 </template>
 <script>
