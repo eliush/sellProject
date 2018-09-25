@@ -1,22 +1,54 @@
 <template>
     <div id="preview">
-        <ul>
-            <li v-for="sell in seles" :key="sell.id">{{sell.date}}-{{sell.money}}</li>
-        </ul>
+        <h2>Sold Amount: {{totalAmount}}</h2>
+        <div id="show" v-for="(sell,index) in sales" :key="sell.id">
+            <span>{{sell.date}}</span>
+            <span>{{sell.money}}</span>
+            <div class="remove" v-on:click="remove(index)">
+                &times;
+            </div>
+        </div>
     </div>
 </template>
 <script>
 
 export default {
-    props: ['sells'],
     data(){
         return{
-        seles : JSON.parse(localStorage.getItem("items"))
+            totalAmount: 0,
+            sales : JSON.parse(localStorage.getItem("items"))
+        }
+    },
+    methods:{
+        remove:function(index){
+            alert("removed");
+            this.sales.splice(index,1);
+            localStorage.setItem("items",JSON.stringify(this.sales));
+    },
+    },
+    computed:{
+        total(){
+            for(var i=0;i<this.sales.length;i++){
+                this.totalAmount = this.totalAmount+ this.sales[i].money;
+            }
         }
     }
 }
 </script>
 <style scoped>
-
+h2{
+    text-align: center;
+    color: #209cee;
+}
+#show{
+  height:30px;
+  width: 100%;
+  background: #209cee;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 10px 0;
+}
 </style>
 
