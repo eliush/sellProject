@@ -3,6 +3,7 @@
   <ul>
       <li><router-link to="/" exact>Home</router-link></li>
       <li><router-link to="/stock" exact>Stock</router-link></li>
+      <li><router-link to="/showStocks" exact>Stocked</router-link></li>
       <li><router-link to="/sell" exact>Sell</router-link></li>
       <li><router-link to="/showSells" exact>Seles</router-link></li>
   </ul>
