@@ -1,10 +1,16 @@
 <template>
 <div id="sell">
-    <h4>Total Sell</h4>
+    <h2>Total Sell Quantity</h2>
     <form>
-        <input type="date" id="date" v-model="dates" placeholder="Date"> 
-        <input type="text" id="buy" v-model="moneys" placeholder="Sell">
-        <button v-on:click.prevent="addSell">Add</button>
+      <label>Category:</label>
+        <select v-model="items">
+            <option v-for="category in categorys" :key="category.id">{{category}}</option>
+        </select>
+      <label>Date:</label>
+      <input type="date" id="date" v-model="dates" placeholder="Date">
+      <label>Quantity:</label> 
+      <input type="text" id="buy" v-model="quantitys" placeholder="Quantity">
+      <button v-on:click.prevent="addSell">Add</button>
     </form>
 </div>
 </template>
@@ -12,9 +18,12 @@
 export default {
     data() {
       return {
+        idN : 0,
+        items: "",
         dates: '',
-        moneys: '',
-        sells: JSON.parse(localStorage.getItem("items")) || [],
+        quantitys: '',
+        categorys: ["Chinese Shawl","IC Shawl","Gents Shawl"],
+        sells: JSON.parse(localStorage.getItem("sold")) || [],
       }
     },
     methods: {
@@ -24,11 +33,17 @@ export default {
             return
           }
           else{this.sells.push({
-              date:  this.dates,
-              money: this.moneys
+            id: this.idN,
+            item: this.items,
+            date:  this.dates,
+            quantity: this.quantitys
           });
           alert("Added");
-          localStorage.setItem("items",JSON.stringify(this.sells));
+          localStorage.setItem("sold",JSON.stringify(this.sells));
+          this.idN++;
+          this.dates = "";
+          this.quantitys= "";
+          this.items = "";
           }
           
       },
@@ -36,6 +51,31 @@ export default {
 }    
 </script>
 <style scoped>
+h2{
+  color: #209cee;
+}
+form label{
+    color: #16bdbd;
+    margin: 0 10px;
+}
+select{
+    height: 25px;
+    width: 150px;
+    border-radius: 3px;
+}
+input{
+    height: 20px;
+    width: 150px;
+    border-radius: 3px;
+    border: 1px solid lightgrey;
+}
+button{
+    height: 23px;
+    width: 80px;
+    margin-left: 20px;
+    background: #16bdbd;
+    border-radius: 5px;
+}
 #sell {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

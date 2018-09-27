@@ -1,12 +1,14 @@
 <template>
 <div id="stock">
-    <h4>Add in Stock</h4>
+    <h2>Add in Stock</h2>
     <form >
-        <label>Category</label>
+        <label>Category:</label>
         <select v-model="items">
             <option v-for="category in categorys" :key="category.id">{{category}}</option>
         </select>
-        <input type="date" id="date" v-model="dates" placeholder="Date"> 
+        <label>Date:</label>
+        <input type="date" id="date" v-model="dates" placeholder="Date">
+        <label>Quantity:</label> 
         <input type="text" id="buy" v-model="quantitys" placeholder="Quantity">
         <button v-on:click.prevent="add">Add</button> 
     </form>
@@ -20,7 +22,8 @@ export default {
         dates: '',
         quantitys: '',
         categorys: ["Chinese Shawl","IC Shawl","Gents Shawl"],
-        items: ""
+        items: "",
+        idN:0
       }
     },
     methods: {
@@ -31,18 +34,48 @@ export default {
           }
           else{
                 this.stocks.push({
+                    id: this.idN,
                     item: this.items,
                     date: this.dates,
                     quantity : this.quantitys
                 });
             alert("Added");
             localStorage.setItem("stock",JSON.stringify(this.stocks));
+            this.idN++;
+            this.dates = "";
+            this.quantitys = "";
+            this.items = "";
             }
         },
       }    
 }    
 </script>
 <style scoped>
+h2{
+    color: #209cee;
+}
+form label{
+    color: #16bdbd;
+    margin: 0 10px;
+}
+select{
+    height: 25px;
+    width: 150px;
+    border-radius: 3px;
+}
+input{
+    height: 20px;
+    width: 150px;
+    border-radius: 3px;
+    border: 1px solid lightgrey;
+}
+button{
+    height: 23px;
+    width: 80px;
+    margin-left: 20px;
+    background: #16bdbd;
+    border-radius: 5px;
+}
 #stock {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
