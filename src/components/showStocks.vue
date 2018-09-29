@@ -36,43 +36,25 @@ export default {
             localStorage.setItem("stock",JSON.stringify(this.aStock));
         },
         gets: function(){
-            if(this.items === "Chinese Shawl"){
-                 this.aStock = this.stocked.filter(stock => {
-                   return stock.item === "Chinese Shawl";
-                 });
-                 this.show = false;
-                 this.total = 0;
-                for(var i=0;i<this.aStock.length;i++){
-                    this.total = parseInt(this.total)+ parseInt(this.aStock[i].quantity);
-                }
-            }else if(this.items === "IC Shawl"){
-                 this.aStock = this.stocked.filter(stock => {
-                   return stock.item === "IC Shawl";
-                 });
-                 this.show = false;
-                 this.total = 0;
-                for(var i=0;i<this.aStock.length;i++){
-                    this.total = parseInt(this.total)+ parseInt(this.aStock[i].quantity);
-                }
-            }else if(this.items === "Gents Shawl"){
-                 this.aStock = this.stocked.filter(stock => {
-                   return stock.item === "Gents Shawl";                   
-                 });
-                 this.show = false;
-                 this.total = 0;
-                for(var i=0;i<this.aStock.length;i++){
-                    this.total = parseInt(this.total)+ parseInt(this.aStock[i].quantity);
-                }
-            }else if(this.items === "All"){
+            if(this.items === "All"){
                 this.aStock = this.stocked;
                 console.log("hi");
                 this.show = true;
                 this.total = 0;
-                for(var i=0; i<this.stocked.length;i++){
-                    this.total = parseInt(this.total)+ parseInt(this.stocked[i].quantity)
+                for(var i=0; i<this.aStock.length;i++){
+                    this.total = parseInt(this.total)+ parseInt(this.aStock[i].quantity)
+                }
+            }else{
+                this.aStock = this.stocked.filter(stock =>{
+                    return stock.item === this.items;
+                });
+                this.show = false;
+                this.total = 0;
+                for(var i=0; i<this.aStock.length;i++){
+                    this.total = parseInt(this.total)+ parseInt(this.aStock[i].quantity)
                 }
             }
-        }    
+        }   
         
     },
 }

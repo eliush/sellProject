@@ -14,6 +14,7 @@
             <div v-if="show" class="remove" v-on:click="remove(index)">
                 &times;
             </div>
+            
         </div>
     </div>
 </template>
@@ -37,42 +38,26 @@ export default {
             localStorage.setItem("items",JSON.stringify(this.aSales));
         },
         gets: function(){
-                if(this.items=== "Chinese Shawl"){
-                    this.aSales = this.sales.filter(sale=>{
-                        return sale.item === "Chinese Shawl";
-                    });
-                    this.show = false;
-                    this.total = 0;
-                    for(var i=0;i<this.aSales.length;i++){
-                        this.total = parseInt(this.total)+parseInt(this.aSales[i].quantity)
-                    }
-                }else if(this.items === "IC Shawl"){
-                    this.aSales = this.sales.filter(sale =>{
-                        return sale.item === "IC Shawl";
-                    });
-                    this.show = false;
-                    this.total = 0;
-                    for(var i=0;i<this.aSales.length;i++){
-                        this.total = parseInt(this.total)+parseInt(this.aSales[i].quantity)
-                    }
-                }else if(this.items === "Gents Shawl"){
-                    this.aSales = this.sales.filter(sale=>{
-                        return sale.item === "Gents Shawl";
-                    });
-                    this.show = false;
-                    this.total = 0;
-                    for(var i=0;i<this.aSales.length;i++){
-                        this.total = parseInt(this.total)+parseInt(this.aSales[i].quantity)
-                    }
-                }else{
-                    this.aSales = this.sales;
-                    this.show = true;
-                    this.total = 0;
-                    for(var i=0;i<this.aSales.length;i++){
-                        this.total = parseInt(this.total)+parseInt(this.aSales[i].quantity);
-                    }
+            if(this.items === "All"){
+                this.aSales = this.sales;
+                this.show = true;
+                this.total = 0;
+                for(var i=0;i<this.aSales.length;i++){
+                    this.total = parseInt(this.total)+parseInt(this.aSales[i].quantity);
                 }
+            }else{
+                this.aSales = this.sales.filter(sale =>{
+                    return sale.item === this.items;
+                });
+                this.show = false;
+                this.total = 0;
+                for(var i=0;i<this.aSales.length;i++){
+                    this.total = parseInt(this.total)+parseInt(this.aSales[i].quantity);
+                }
+            }
         }
+                
+    
     },
 }
 </script>
